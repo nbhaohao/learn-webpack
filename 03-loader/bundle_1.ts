@@ -116,7 +116,9 @@ const _main = () => {
     projectRootPath
   );
   const distDirPath = path.join(projectRootPath, "dist");
-  fs.mkdirSync(distDirPath);
+  if (!fs.existsSync(distDirPath)) {
+    fs.mkdirSync(distDirPath);
+  }
   fs.writeFileSync(path.join(distDirPath, "bundle.js"), generateCode(result));
 };
 
